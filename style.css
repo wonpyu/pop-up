@@ -242,3 +242,10 @@ margin:40px auto;
 }
 
 
+@media (max-width: 768px) {
+    /* Jika ada navbar, kurangi padding/margin bawahnya */
+    nav, .navbar, header {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
