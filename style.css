@@ -242,37 +242,53 @@ margin:40px auto;
 }
 
 
-@media (max-width: 768px) {
-    /* 1. Paksa body dan container tidak punya jarak atas berlebih */
-    body {
-        padding-top: 0 !important;
+/* --- INI UNTUK PENGATURAN TAMPILAN HP --- */
+@media screen and (max-width: 480px) {
+    /* Hapus paksa semua ruang kosong bawaan browser di bagian atas */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
     }
-    
+
     .container {
-        padding-top: 5px !important; /* Mepet ke atas */
+        padding: 8px !important; /* Jarak kiri kanan tipis saja */
         margin-top: 0 !important;
     }
 
-    /* 2. Press abis jarak tulisan judul biar gak makan tempat */
+    /* Pangkas habis area judul agar langsung mepet ke atas layar HP */
     .section-header {
-        padding-top: 5px !important;    /* Jarak dari atas layar dipangkas habis */
-        padding-bottom: 5px !important; /* Jarak ke gambar di bawahnya dipersempit */
-        margin-bottom: 5px !important;
+        padding: 10px 10px 5px 10px !important;
+        margin: 0 0 10px 0 !important;
     }
 
     .section-header h1 {
-        font-size: 1.4rem !important; /* Dikecilkan dikit lagi biar naik */
+        font-size: 1.4rem !important; 
         margin-bottom: 2px !important;
+        line-height: 1.2 !important;
     }
 
     .section-header p {
         font-size: 0.85rem !important;
         line-height: 1.3 !important;
+        color: #666;
     }
 
-    /* 3. Jarak antar kotak gambar dibuat super rapat */
+    /* Set tinggi kotak gambar agar lebih pendek dan naik ke atas screen */
     .main-categories {
-        margin-top: 5px !important;
-        gap: 10px !important; 
+        grid-template-columns: 1fr !important; /* 1 kolom ke bawah */
+        gap: 8px !important; /* Jarak antar kotak super rapat */
+        margin-top: 0 !important;
+    }
+
+    .category-card {
+        height: 140px !important; /* Tingginya dibuat 140px saja agar 3-4 foto langsung muat di satu layar HP tanpa perlu scroll */
+    }
+
+    .category-overlay {
+        padding: 12px !important;
+    }
+
+    .category-overlay h2 {
+        font-size: 1.1rem !important;
     }
 }
