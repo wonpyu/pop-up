@@ -243,9 +243,36 @@ margin:40px auto;
 
 
 @media (max-width: 768px) {
-    /* Jika ada navbar, kurangi padding/margin bawahnya */
-    nav, .navbar, header {
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
+    /* 1. Paksa body dan container tidak punya jarak atas berlebih */
+    body {
+        padding-top: 0 !important;
+    }
+    
+    .container {
+        padding-top: 5px !important; /* Mepet ke atas */
+        margin-top: 0 !important;
+    }
+
+    /* 2. Press abis jarak tulisan judul biar gak makan tempat */
+    .section-header {
+        padding-top: 5px !important;    /* Jarak dari atas layar dipangkas habis */
+        padding-bottom: 5px !important; /* Jarak ke gambar di bawahnya dipersempit */
+        margin-bottom: 5px !important;
+    }
+
+    .section-header h1 {
+        font-size: 1.4rem !important; /* Dikecilkan dikit lagi biar naik */
+        margin-bottom: 2px !important;
+    }
+
+    .section-header p {
+        font-size: 0.85rem !important;
+        line-height: 1.3 !important;
+    }
+
+    /* 3. Jarak antar kotak gambar dibuat super rapat */
+    .main-categories {
+        margin-top: 5px !important;
+        gap: 10px !important; 
     }
 }
