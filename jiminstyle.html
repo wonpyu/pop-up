@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JIMINATION">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jimin Childhood Story - Neighborhood Hyung">
+<meta property="og:description" content="Jimin's neighborhood hyung shares stories from his childhood.">
+<meta property="og:url" content="https://jimination.com/archive/story1"> <meta property="og:image" content="https://lov3-lgtm.github.io/jimination-assets/images/arcieves/story1a.jpg">
+
+<title>Jimin Childhood Story</title>
+
+<link rel="stylesheet" href="/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="paper">
+<header class="section-header">
+    <h1>Jimin's Wardrobe & Style</h1>
+    <p>Get the inspired looks, skincare secrets, and iconic accessories worn by Jimin.</p>
+</header>
+
+<main class="container">
+    
+    <!-- ================= CATEGORIES SECTION ================= -->
+    <section id="categories-grid" class="main-categories">
+        <div class="category-card" onclick="openCategory('skincare')">
+            <img src="https://res.cloudinary.com/ddh2uwdlk/image/upload/v1784492129/FpgE-ZzacAArXAP_g7kwmf.jpg" alt="Jimin Skincare">
+            <div class="category-overlay">
+                <h2>Skincare & Beauty</h2>
+            </div>
+        </div>
+
+        <div class="category-card" onclick="openCategory('fashion')">
+            <img src="https://res.cloudinary.com/ddh2uwdlk/image/upload/v1784491977/HNddaBoaoAAwSog_j5yyyd.jpg" alt="Jimin Fashion">
+            <div class="category-overlay">
+                <h2>Fashion & Outfits</h2>
+            </div>
+        </div>
+
+        <div class="category-card" onclick="openCategory('accessories')">
+            <img src="https://res.cloudinary.com/ddh2uwdlk/image/upload/v1784492293/HNbDF5PXQAERsVH_dpafr7.jpg" alt="Jimin Accessories">
+            <div class="category-overlay">
+                <h2>Accessories & Jewelry</h2>
+            </div>
+        </div>
+
+        <div class="category-card" onclick="openCategory('fragrance')">
+            <img src="https://res.cloudinary.com/ddh2uwdlk/image/upload/v1784492707/D7UmdGuU0AApL36_j2ou70.jpg" alt="Jimin Fragrance">
+            <div class="category-overlay">
+                <h2>Fragrance & Body Care</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PRODUCT RECOMMENDATIONS SECTION ================= -->
+    <section id="products-section" class="products-container hidden">
+        <button class="back-btn" onclick="backToCategories()">← Back to Categories</button>
+        <h2 id="current-category-title" class="category-title">Category Title</h2>
+
+        <!-- Di sini kontener kotak-kotak kecilnya, sekarang kosong karena akan diisi otomatis lewat JS -->
+        <div id="products-grid-target" class="products-grid"></div>
+    </section>
+
+</main>
+
+<!-- ================= JAVASCRIPT DINAMIS ================= -->
+<script>
+    // 1. Database Produk Kakak (Ubah gambar, judul, deskripsi, dan link amazon di sini)
+    const productsData = {
+        skincare: [
+            {
+                badge: "Facial Cream",
+                img: "https://res.cloudinary.com/dyulvwffn/image/upload/v1784492917/31urAopo7rL._SY300_SX300_QL70_FMwebp__rtjth3.webp",
+                title: "AESTURA",
+                desc: "From Are You Sure ?! Season 2.",
+                link: "https://amzn.to/4fnIZeG"
+            },
+            {
+                badge: "Facial Cream",
+                img: "https://m.media-amazon.com/images/I/61FRhtb-TbL._SL1500_.jpg",
+                title: "AESTURA",
+                desc: "From Are You Sure ?! Season 2.",
+                link: "https://amzn.to/45dyG8q"
+            },
+            {
+                badge: "Facial Wash",
+                img: "https://m.media-amazon.com/images/I/51j8UE-scrL._SL1000_.jpg",
+                title: "Senka Perfect Whip A Facial Cleanser",
+                desc: "From Are You Sure ?! Season 2.",
+                link: "https://amzn.to/44H6H0L"
+            },
+             {
+                badge: "Sheet Mask",
+                img: "https://m.media-amazon.com/images/I/710pdbo9-QL._SL1500_.jpg",
+                title: "Mediheal Sheet Mask Essential",
+                desc: "From Are You Sure ?! Season 2.",
+                link: "https://amzn.to/4pqJ4D6"
+            },
+        
+            {
+                badge: "Sheet Mask",
+                img: "https://m.media-amazon.com/images/I/61x2lX49YiL._SL1500_.jpg",
+                title: "MEDIHEAL",
+                desc: "From Are You Sure ?! Season 2.",
+                link: "https://amzn.to/4b57g8i"
+            },
+            {
+                badge: "Sheet Mask",
+                img: "https://m.media-amazon.com/images/I/51ZlbACbiwL._SL1000_.jpg",
+                title: "Mediheal - Tea Tree",
+                desc: "From Jimin x VOGUE (FACE Era)",
+                link: "https://amzn.to/4wdIjjy"
+            },
+            {
+                badge: "Facial Serum",
+                img: "https://m.media-amazon.com/images/I/51fr1EEncHL._SL1200_.jpg",
+                title: "L'Occitane Immortelle",
+                desc: "BTS Bon Voyage",
+                link: "https://amzn.to/4prByIa"
+            },
+            {
+                badge: "Facial Serum",
+                img: "https://m.media-amazon.com/images/I/51fr1EEncHL._SL1200_.jpg",
+                title: "L'Occitane Immortelle",
+                desc: "BTS Bon Voyage",
+                link: "https://amzn.to/3Ta6zEz"
+            },
+             {
+                badge: "Lip Product",
+                img: "https://m.media-amazon.com/images/I/51lw5swlRyL._SL1241_.jpg",
+                title: "Dior Addict Lip Glow",
+                desc: "Jimin x W Korea 2023",
+                link: "https://amzn.to/3R6mGCu"
+            },
+            {
+                badge: "Lip Balm",
+                img: "https://m.media-amazon.com/images/I/91p8KEqYUNL._SL1500_.jpg",
+                title: "NIVEA Lip Care",
+                desc: "RUN BTS Episode 83.",
+                link: "https://amzn.to/44HO64G"
+            },
+        ],
+        fashion: [
+            {
+                badge: "Hat",
+                img: "https://res.cloudinary.com/dyulvwffn/image/upload/v1784497303/6262298085962748207_klbgnr.jpg",
+                title: "MLB New York Yankees Branson",
+                desc: "Jimin at LA in August 2025",
+                link: "https://amzn.to/4gMJem8"
+            }
+        ],
+        accessories: [
+          
+            {
+                badge: "Sun Glasses",
+                img: "https://m.media-amazon.com/images/I/61DqAzfOE4L._AC_SX569_.jpg",
+                title: "unglasses for Women Men",
+                desc: "Jimin For Grammy's Award 2021",
+                link: "https://amzn.to/4fpkkGP"
+            },
+            {
+                badge: "Party Glasses",
+                img: "https://res.cloudinary.com/dyulvwffn/image/upload/v1784497019/6262298085962748205_xa7q2t.jpg",
+                title: "Bee Party Decoration Glasses Sunglasses",
+                desc: "Jimin For Halloween 2021",
+                link: "https://amzn.to/4wPu5Fl"
+            }
+        ],
+        fragrance: [
+            {
+                badge: "Parfume",
+                img: "https://m.media-amazon.com/images/I/7184rKwgvuL._SL1500_.jpg",
+                title: "Jo Malone",
+                desc: "Elegant, Clean, Minimalist",
+                link: "https://amzn.to/4fIjYfE"
+            },
+            {
+                badge: "Hair Care",
+                img: "https://m.media-amazon.com/images/I/51m4pJrnSDL._SL1500_.jpg",
+                title: "LA’DOR Perfumed Hair Shampoo",
+                desc: "Inaspirate by Jimin's Angel Mullet",
+                link: "https://amzn.to/45gGbve"
+            },
+            {
+                badge: "Hair Care",
+                img: "https://m.media-amazon.com/images/I/51X1jrdKu1L._SL1500_.jpg",
+                title: "LA’DOR Perfumed Hair Treatment",
+                desc: "Inaspirate by Jimin's Angel Mullet",
+                link: "https://amzn.to/3RKvLRB"
+            },
+            {
+                badge: "Hair Care",
+                img: "https://m.media-amazon.com/images/I/51m4pJrnSDL._SL1500_.jpg",
+                title: "LA’DOR Perfumed Hair Shampoot",
+                desc: "Inaspirate by Jimin's Angel Mullet",
+                link: "https://amzn.to/4wSDNa0"
+            }
+        ]
+    };
+
+    // 2. Fungsi untuk membuka kategori dan merender produk yang benar
+    function openCategory(categoryName) {
+        const categoriesGrid = document.getElementById('categories-grid');
+        const productsSection = document.getElementById('products-section');
+        const categoryTitle = document.getElementById('current-category-title');
+        const gridTarget = document.getElementById('products-grid-target');
+
+        // Ganti judul kategori di atas grid
+        const titles = {
+            'skincare': 'Skincare & Beauty Secrets',
+            'fashion': 'Jimin-Inspired Outfits',
+            'accessories': 'Iconic Jewelry & Accessories',
+            'fragrance': 'Favorite Fragrance & Body Care'
+        };
+        categoryTitle.innerText = titles[categoryName];
+
+        // Kosongkan isi grid lama, lalu isi dengan produk kategori yang diklik
+        gridTarget.innerHTML = "";
+        
+        const selectedProducts = productsData[categoryName];
+        selectedProducts.forEach(product => {
+            const productHTML = `
+                <div class="product-card">
+                    <span class="product-badge">${product.badge}</span>
+                    <div class="product-img-wrapper">
+                        <img src="${product.img}" alt="${product.title}" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.title}</h3>
+                        <p class="product-desc">${product.desc}</p>
+                        <a href="${product.link}" target="_blank" rel="noopener noreferrer" class="amazon-btn">Check on Amazon</a>
+                    </div>
+                </div>
+</div>
+
+ <!-- Vanilla JS Ringan untuk Interaksi Pindah Halaman/Filter -->
+    <script>
+        
+       // 1. DATABASE PRODUK (Ubah gambar, judul, deskripsi, dan link amazon di sini)
+const productsData = {
+    skincare: [
+        {
+            badge: "Jimin's Choice",
+            img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&q=80",
+            title: "Hydrating Lip Balm Gloss",
+            desc: "Pelembap andalan Jimin untuk tampilan bibir sehat natural khasnya.",
+            link: "#" // Masukkan link affiliate Amazon di sini
+        },
+        {
+            badge: "Idol Glow",
+            img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=400&q=80",
+            title: "Tea Tree Essential Sheet Mask",
+            desc: "Masker wajah rahasia kulit glowing Jimin setelah seharian di panggung.",
+            link: "#"
+        }
+    ],
+    fashion: [
+        {
+            badge: "Cozy Style",
+            img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=400&q=80",
+            title: "Oversized Knit Sweater",
+            desc: "Sweater rajut longgar super nyaman yang sering dia gunakan saat latihan.",
+            link: "#"
+        },
+        {
+            badge: "Airport Look",
+            img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&q=80",
+            title: "Classic Black Leather Jacket",
+            desc: "Jaket kulit ikonik gaya kasual Jimin saat di bandara.",
+            link: "#"
+        }
+    ],
+    accessories: [
+        {
+            badge: "Inspired Look",
+            img: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=400&q=80",
+            title: "Silver Chain Cross Earrings",
+            desc: "Anting perak salib yang persis dipakai Jimin saat Weverse Live.",
+            link: "#"
+        },
+        {
+            badge: "Trending",
+            img: "https://images.unsplash.com/photo-1513094735237-8f2714d57c13?w=400&q=80",
+            title: "Retro Tinted Sunglasses",
+            desc: "Kacamata retro dengan lensa transparan ala penampilan Dynamite.",
+            link: "#"
+        }
+    ],
+    fragrance: [
+        {
+            badge: "Signature Scent",
+            img: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+            title: "Orange Amber Eau de Parfum",
+            desc: "Aroma citrus segar berpadu dengan amber hangat favorit Jimin.",
+            link: "#"
+        },
+        {
+            badge: "Body Care",
+            img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&q=80",
+            title: "Soft Powder Body Wash",
+            desc: "Sabun mandi dengan wangi bedak bayi lembut yang menenangkan.",
+            link: "#"
+        }
+    ]
+};
+
+// 2. FUNGSI UNTUK MEMBUKA KATEGORI DAN MERENDER PRODUK YANG BENAR
+function openCategory(categoryName) {
+    const categoriesGrid = document.getElementById('categories-grid');
+    const productsSection = document.getElementById('products-section');
+    const categoryTitle = document.getElementById('current-category-title');
+    const gridTarget = document.getElementById('products-grid-target');
+
+    // Ganti judul kategori di atas grid kotak produk
+    const titles = {
+        'skincare': 'Skincare & Beauty Secrets',
+        'fashion': 'Jimin-Inspired Outfits',
+        'accessories': 'Iconic Jewelry & Accessories',
+        'fragrance': 'Favorite Fragrance & Body Care'
+    };
+    categoryTitle.innerText = titles[categoryName];
+
+    // Kosongkan isi grid lama, lalu render produk kategori yang baru diklik
+    gridTarget.innerHTML = "";
+    
+    const selectedProducts = productsData[categoryName];
+    selectedProducts.forEach(product => {
+        `;
+        gridTarget.innerHTML += productHTML;
+    });
+
+    // Efek transisi menyembunyikan kategori utama dan memunculkan kotak produk
+    categoriesGrid.style.opacity = '0';
+    setTimeout(() => {
+        categoriesGrid.classList.add('hidden');
+        productsSection.classList.remove('hidden');
+        setTimeout(() => {
+            productsSection.style.opacity = '1';
+        }, 50);
+    }, 300);
+}
+
+// 3. FUNGSI UNTUK TOMBOL KEMBALI KELUAR DARI ETALASE PRODUK
+function backToCategories() {
+    const categoriesGrid = document.getElementById('categories-grid');
+    const productsSection = document.getElementById('products-section');
+
+    productsSection.style.opacity = '0';
+    setTimeout(() => {
+        productsSection.classList.add('hidden');
+        categoriesGrid.classList.remove('hidden');
+        setTimeout(() => {
+            categoriesGrid.style.opacity = '1';
+        }, 50);
+    }, 300);
+}
+
+
+             </script>
+
+<script src="/javascript/music.js"></script>
+<script src="/javascript/pwa.js"></script>
+</body>
+
+
+</html>
